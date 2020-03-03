@@ -2352,7 +2352,7 @@ void savesometiles(const char *prompt,int initialval)
 			PACKFILE *f=pack_fopen_password(temppath,F_WRITE, "");
 			if(f)
 			{
-				al_trace("Saving tiles %d to %d: %d\n", first_tile_id, first_tile_id+(the_tile_count-1));
+				al_trace("Saving tiles %d to %d\n", first_tile_id, first_tile_id+(the_tile_count-1));
 				writetilefile(f,first_tile_id,the_tile_count);
 				pack_fclose(f);
 				
@@ -2498,7 +2498,7 @@ void savesomecombos(const char *prompt,int initialval)
 			PACKFILE *f=pack_fopen_password(temppath,F_WRITE, "");
 			if(f)
 			{
-				al_trace("Saving combos %d to %d: %d\n", first_tile_id, first_tile_id+(the_tile_count-1));
+				al_trace("Saving combos %d to %d\n", first_tile_id, first_tile_id+(the_tile_count-1));
 				writecombofile(f,first_tile_id,the_tile_count);
 				pack_fclose(f);
 				char tmpbuf[80]={0};
@@ -2919,7 +2919,7 @@ void savesomecomboaliases(const char *prompt,int initialval)
 			PACKFILE *f=pack_fopen_password(temppath,F_WRITE, "");
 			if(f)
 			{
-				al_trace("Saving combo aliasess %d to %d: %d\n", first_tile_id, first_tile_id+(the_tile_count-1));
+				al_trace("Saving combo aliasess %d to %d\n", first_tile_id, first_tile_id+(the_tile_count-1));
 				writecomboaliasfile(f,first_tile_id,the_tile_count);
 				pack_fclose(f);
 				char tmpbuf[80]={0};
@@ -3064,7 +3064,7 @@ void do_exportdoorset(const char *prompt,int initialval)
 			PACKFILE *f=pack_fopen_password(temppath,F_WRITE, "");
 			if(f)
 			{
-				al_trace("Saving doorsets %d to %d: %d\n", first_doorset_id, first_doorset_id+(the_doorset_count-1));
+				al_trace("Saving doorsets %d to %d\n", first_doorset_id, first_doorset_id+(the_doorset_count-1));
 				writezdoorsets(f,first_doorset_id,the_doorset_count);
 				pack_fclose(f);
 				char tmpbuf[512]={0};
@@ -5753,7 +5753,7 @@ void tile_warp_notification(int which, char *buf)
         
     default:
     {
-        char buf2[25];
+        char buf2[32];
         
         if(strlen(DMaps[Map.CurrScr()->tilewarpdmap[which]].name)==0)
         {
@@ -6982,7 +6982,7 @@ void refresh(int flags)
                 {
                     strcat(buf,item_string[misc.shop[shop].item[j]]);
                     strcat(buf,":");
-                    char pricebuf[4];
+                    char pricebuf[8];
                     sprintf(pricebuf,"%d",misc.shop[shop].price[j]);
                     strcat(buf,pricebuf);
                     
@@ -9098,10 +9098,10 @@ int onCommand(int cmd)
 
 int onEditFFCombo(int);
 
-static char paste_ffc_menu_text[21];
-static char paste_ffc_menu_text2[21];
-static char follow_warp_menu_text[21];
-static char follow_warp_menu_text2[21];
+static char paste_ffc_menu_text[32];
+static char paste_ffc_menu_text2[32];
+static char follow_warp_menu_text[32];
+static char follow_warp_menu_text2[32];
 
 void domouse()
 {
@@ -12032,8 +12032,8 @@ int readoneweapon(PACKFILE *f, int index)
 	{
 		return 0;
 	}
-	al_trace("readoneweapon section_version: %d\n", section_version);
-	al_trace("readoneweapon section_cversion: %d\n", section_cversion);
+	al_trace("readoneweapon section_version: %lu\n", section_version);
+	al_trace("readoneweapon section_cversion: %lu\n", section_cversion);
 
 	if ( zversion > ZELDA_VERSION )
 	{
@@ -12043,7 +12043,7 @@ int readoneweapon(PACKFILE *f, int index)
 	
 	else if ( ( section_version > V_WEAPONS ) || ( section_version == V_WEAPONS && section_cversion < CV_WEAPONS ) )
 	{
-		al_trace("Cannot read .zwpnspr packfile made using V_WEAPONS (%d) subversion (%d)\n", section_version, section_cversion);
+		al_trace("Cannot read .zwpnspr packfile made using V_WEAPONS (%lu) subversion (%lu)\n", section_version, section_cversion);
 		return 0;
 		
 	}
@@ -12129,7 +12129,7 @@ void wpnsprite_rclick_func(int index, int x, int y)
 	memset(temp_weapon_string,0,64);
 	::memcpy(temp_weapon_string, weapon_string[biw[index].i], 64);
 	al_trace("biw[index].i is: %d\n", biw[index].i);
-	al_trace("biw[index] is: %d\n", biw[index]);
+	al_trace("biw[index].s is: %s\n", biw[index].s);
 	spritecopied = 1;
     }
     else if(ret==1) // paste
@@ -12569,7 +12569,7 @@ const char *sfxlist(int index, int *list_size)
     return NULL;
 }
 
-static char lenseffect_str_buf[15];
+static char lenseffect_str_buf[32];
 
 const char *lenseffectlist(int index, int *list_size)
 {
@@ -12801,7 +12801,7 @@ int onScrData()
     char timedstring[6];
 // char nmapstring[4];
 // char nscrstring[3];
-    char csensstring[2];
+    char csensstring[4];
     char tics_secs_str[80];
     sprintf(tics_secs_str, "=0.00 seconds");
     char zora_str[85];
@@ -15293,7 +15293,7 @@ static DIALOG editdmap_dlg[] =
 
 void editdmap(int index)
 {
-    char levelstr[4], compassstr[4], contstr[4], tmusicstr[56], dmapnumstr[60];
+    char levelstr[8], compassstr[8], contstr[8], tmusicstr[56], dmapnumstr[60];
     char *tmfname;
     byte gridstring[8];
     static int xy[2];
@@ -15857,8 +15857,8 @@ int readsomedmaps(PACKFILE *f)
 	
 	
 	
-	al_trace("readsomedmaps section_version: %d\n", section_version);
-	al_trace("readsomedmaps section_cversion: %d\n", section_cversion);
+	al_trace("readsomedmaps section_version: %lu\n", section_version);
+	al_trace("readsomedmaps section_cversion: %lu\n", section_cversion);
     
 	if ( zversion > ZELDA_VERSION )
 	{
@@ -15867,7 +15867,7 @@ int readsomedmaps(PACKFILE *f)
 	}
 	else if (( section_version > V_DMAPS ) || ( section_version == V_DMAPS && section_cversion > CV_DMAPS ) ) 
 	{
-		al_trace("Cannot read .zdmap packfile made using V_DMAPS (%d) subversion (%d)\n", section_version, section_cversion);
+		al_trace("Cannot read .zdmap packfile made using V_DMAPS (%lu) subversion (%lu)\n", section_version, section_cversion);
 		return 0;
 	}
 	else
@@ -16260,8 +16260,8 @@ int readonedmap(PACKFILE *f, int index)
 	{
 		return 0;
 	}
-	al_trace("readonedmap section_version: %d\n", section_version);
-	al_trace("readonedmap section_cversion: %d\n", section_cversion);
+	al_trace("readonedmap section_version: %lu\n", section_version);
+	al_trace("readonedmap section_cversion: %lu\n", section_cversion);
     
 	
 	if ( datatype_version < 0 )
@@ -16290,7 +16290,7 @@ int readonedmap(PACKFILE *f, int index)
 	}
 	else if (( section_version > V_DMAPS ) || ( section_version == V_DMAPS && section_cversion > CV_DMAPS ) ) 
 	{
-		al_trace("Cannot read .zdmap packfile made using V_DMAPS (%d) subversion (%d)\n", section_version, section_cversion);
+		al_trace("Cannot read .zdmap packfile made using V_DMAPS (%lu) subversion (%lu)\n", section_version, section_cversion);
 		return 0;
 	}
 	else
@@ -19040,7 +19040,7 @@ int onShopTypes()
 /********* onItemDropSets **********/
 /***********************************/
 
-static char item_drop_set_str_buf[40];
+static char item_drop_set_str_buf[80];
 int item_drop_set_list_size=MAXITEMDROPSETS;
 
 const char *itemdropsetlist(int index, int *list_size)
@@ -20136,7 +20136,7 @@ int onEnemies()
     word oldenemy[10];
     memcpy(oldenemy,Map.CurrScr()->enemy,10*sizeof(word));
     restore_mouse();
-    char buf[24] = " ";
+    char buf[32] = " ";
     int ret;
     int copy=-1;
     
@@ -20343,7 +20343,7 @@ static DIALOG password_dlg[] =
 
 int onHeader()
 {
-    char zver_str[11],q_num[8],version[10],minver[10];
+    char zver_str[16],q_num[8],version[10],minver[10];
     
     bool resize=!(get_debug()||key[KEY_LSHIFT]||key[KEY_RSHIFT]);
     
@@ -21303,8 +21303,8 @@ int onNewComboAlias()
     combo_alias *combo;
     combo = &temp_aliases[comboa_cnt];
     
-    char cwidth[3];
-    char cheight[3];
+    char cwidth[8];
+    char cheight[8];
     // char cp[3];
     
     word temp_combos[16*11*7];
@@ -26538,7 +26538,7 @@ int main(int argc,char **argv)
 	char themefile[2048] = {0};
 	strcpy(themefile,get_config_string("Theme","theme_filename",""));
 	
-	if ( themefile[0] == NULL )
+	if ( themefile[0] == '\0' )
 	{
 		RAMpal[dvc(1)] = _RGB(get_config_int("Theme","dvc1_r",4),get_config_int("Theme","dvc1_g",38),get_config_int("Theme","dvc1_b",46)); //box fg is text
 		RAMpal[dvc(2)] = _RGB(get_config_int("Theme","dvc2_r",(16*63/255)), get_config_int("Theme","dvc2_g",(10*63/255)), get_config_int("Theme","dvc2_b",0));
@@ -28686,7 +28686,7 @@ void __zc_always_assert(bool e, const char* expression, const char* file, int li
     if(!e)
     {
         char buf[1024];
-        sprintf("ASSERTION FAILED! : %s, %s line %i\n", expression, file, line);
+        sprintf(buf, "ASSERTION FAILED! : %s, %s line %i\n", expression, file, line);
         
         al_trace("%s", buf);
         set_gfx_mode(GFX_TEXT, 0, 0, 0, 0);

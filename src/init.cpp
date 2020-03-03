@@ -1098,7 +1098,7 @@ void PopulateInitDialog()
         {
             for(int y = 103; y<=175 && j<=255; y+=18)
             {
-                char *t = new char[4]; //memory not freed
+                char *t = new char[6]; //memory not freed
                 sprintf(t, "%d", j++);
                 initPopulate(i, jwin_rtext_proc,       x,    y,     48,      9,    vc(0),                  vc(11),                  0,    0,              0,             0, (void *) t,                                         NULL,   NULL);
                 //delete [] t;
@@ -1361,7 +1361,7 @@ void PopulateInitDialog()
             {
                 if(j>=256)
                 {
-                    char *t = new char[4]; //memory not freed
+                    char *t = new char[16]; //memory not freed
                     sprintf(t, "%d", j++);
                     initPopulate(i, jwin_rtext_proc,       x,    y,     48,      9,    vc(0),                  vc(11),                  0,    0,              0,             0, (void *) t,                                         NULL,   NULL);
                     //delete [] t;
@@ -1628,12 +1628,12 @@ int doInit(zinitdata *local_zinit)
     }
     
     // items
-    char bombstring[5];
-    char maxbombstring[5];
-    char sbombstring[5];
-    char maxsbombstring[5];
-    char arrowstring[5];
-    char maxarrowstring[5];
+    char bombstring[8];
+    char maxbombstring[8];
+    char sbombstring[8];
+    char maxsbombstring[8];
+    char arrowstring[8];
+    char maxarrowstring[8];
     sprintf(bombstring, "%d", local_zinit->bombs);
     sprintf(maxbombstring, "%d", local_zinit->max_bombs);
     sprintf(sbombstring, "%d", local_zinit->super_bombs);
@@ -1649,7 +1649,7 @@ int doInit(zinitdata *local_zinit)
     init_dlg[120].dp=maxarrowstring;
     // dmap items
     
-    char key_list[512][4];
+    char key_list[512][8];
     
     for(int i=0; i<256; i++)
     {
@@ -1670,20 +1670,20 @@ int doInit(zinitdata *local_zinit)
     }
     
     // misc
-    char tempbuf[5];
-    char hcstring[5];
-    char hcpstring[5];
-    char hcpperstring[5];
-    char sheartstring[5];
-    char cheartstring[5];
-    char keystring[5];
-    char rupiestring[5];
-    char magicstring[5];
-    char maxmagicstring[5];
+    char tempbuf[8];
+    char hcstring[8];
+    char hcpstring[8];
+    char hcpperstring[8];
+    char sheartstring[8];
+    char cheartstring[8];
+    char keystring[8];
+    char rupiestring[8];
+    char magicstring[8];
+    char maxmagicstring[8];
     char maxrupeestring[8];
     char maxkeystring[8];
-    char bombratiostring[5];
-    char gravitystring[5];
+    char bombratiostring[8];
+    char gravitystring[8];
     char terminalvstring[8];
     char thresholdstring[8];
     

@@ -182,19 +182,12 @@ static void mainscreen(int f)
         blit((BITMAP*)data[BMP_TITLE_NES].dat,scrollbuf,0,0,0,0,256,224);
         blit(scrollbuf,framebuf,0,0,0,0,256,224);
         char tbuf[80];
-	char copyrbuf[80] = { NULL };
+	char copyrbuf[80];
         sprintf(tbuf, "%c1986 NINTENDO", 0xBB);
-	sprintf(copyrbuf, "%c", 0xBB);
+	sprintf(copyrbuf, "%c%d AG", 0xBB, BUILDTM_YEAR);
 	
         textout_ex(framebuf,zfont,tbuf,104,128,13,-1);
-	char t_year[5];
-	sprintf(t_year, "%d", BUILDTM_YEAR);
-	strcat(copyrbuf,t_year);
-	strcat(copyrbuf," AG");
-	
-	
-        //sprintf(tbuf, "%c" (char)t_year " AG", 0xBC);
-        //tbuf[0]=(char)0xBC;
+
         textout_ex(framebuf,zfont,copyrbuf,104,136,13,-1);
     }
     
@@ -607,17 +600,11 @@ static void DX_mainscreen(int f)
     memset(emulation_patches,0,sizeof(emulation_patches));
     static int pic=0;
     char tbuf[80];
-	 sprintf(tbuf, "%c1986 Nintendo",0xBB);
-        //tbuf[0]=0xBB;
-	    
-	char copyrbuf2[80] = { NULL };
-	sprintf(copyrbuf2, "%c", 0xBB);
-	
-	char t_year[5];
-	sprintf(t_year, "%d", BUILDTM_YEAR);
-	strcat(copyrbuf2,t_year);
-	strcat(copyrbuf2," Armageddon Games");
+    sprintf(tbuf, "%c1986 Nintendo",0xBB);
     
+    char copyrbuf2[80];
+    sprintf(copyrbuf2, "%c%d Armageddon Games", 0xBB, BUILDTM_YEAR);
+	
     if(f>=1010)
         return;
         
@@ -732,14 +719,11 @@ static void v25_mainscreen(int f)
     memset(emulation_patches,0,sizeof(emulation_patches));
     static int pic=0;
     char tbuf[80];
-    char copyrbuf[80] = { NULL };
+    char copyrbuf[80];
         
-	sprintf(copyrbuf, "%c", 0xBB);
+    sprintf(copyrbuf, "%c%d Armageddon Games", 0xBB, BUILDTM_YEAR);
 	
-	char t_year[5];
-	sprintf(t_year, "%d", BUILDTM_YEAR);
-	strcat(copyrbuf,t_year);
-	strcat(copyrbuf," Armageddon Games");
+
     if(f>=1010)
         return;
         

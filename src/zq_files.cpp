@@ -85,10 +85,12 @@ void edit_qt()                                              //this is used to se
     
     if(temppath[0]==0)
     {
-        getcwd(temppath,2048);
+      if (getcwd(temppath,2048))
+      {
         fix_filename_case(temppath);
         fix_filename_slashes(temppath);
         put_backslash(temppath);
+      }
     }
     
     bool gotname;
@@ -98,11 +100,16 @@ void edit_qt()                                              //this is used to se
     {
         strcpy(tpath, temppath);
         chop_path(tpath);
-        getcwd(tpath2,2048);
-        fix_filename_case(tpath2);
-        fix_filename_slashes(tpath2);
-        put_backslash(tpath2);
-        
+        if (getcwd(tpath2,2048))
+	{
+	  fix_filename_case(tpath2);
+	  fix_filename_slashes(tpath2);
+	  put_backslash(tpath2);
+	}
+	else
+	{
+	  tpath2[0] = 0;
+	}
         if(!strcmp(tpath, tpath2))
         {
             strcpy(header.templatepath, get_filename(temppath));
@@ -150,11 +157,16 @@ void edit_qt(int index)
             {
                 strcpy(tpath, temppath);
                 chop_path(tpath);
-                getcwd(tpath2,2048);
-                fix_filename_case(tpath2);
-                fix_filename_slashes(tpath2);
-                put_backslash(tpath2);
-                
+                if (getcwd(tpath2,2048))
+		{
+		  fix_filename_case(tpath2);
+		  fix_filename_slashes(tpath2);
+		  put_backslash(tpath2);
+		}
+		else
+		{
+		  tpath2[0] = 0;
+		}
                 if(!strcmp(tpath, tpath2))
                 {
                     strcpy(QuestTemplates[index].path, get_filename(temppath));
@@ -501,10 +513,10 @@ int d_rulesettext_proc(int msg, DIALOG *d, int)
     }
     
     FONT *f = is_large ? font : sfont2;
-    textprintf_ex(screen,f,d->x,d->y,jwin_pal[jcBOXFG],jwin_pal[jcBOX],buf);
-    textprintf_ex(screen,f,d->x,d->y+(is_large?12:8),jwin_pal[jcBOXFG],jwin_pal[jcBOX],buf2);
-    textprintf_ex(screen,f,d->x,d->y+(is_large?24:16),jwin_pal[jcBOXFG],jwin_pal[jcBOX],buf3);
-    textprintf_ex(screen,f,d->x,d->y+(is_large?36:24),jwin_pal[jcBOXFG],jwin_pal[jcBOX],buf4);
+    textout_ex(screen,f, buf,d->x,d->y,jwin_pal[jcBOXFG],jwin_pal[jcBOX]);
+    textout_ex(screen,f, buf2,d->x,d->y+(is_large?12:8),jwin_pal[jcBOXFG],jwin_pal[jcBOX]);
+    textout_ex(screen,f, buf3,d->x,d->y+(is_large?24:16),jwin_pal[jcBOXFG],jwin_pal[jcBOX]);
+    textout_ex(screen,f, buf4,d->x,d->y+(is_large?36:24),jwin_pal[jcBOXFG],jwin_pal[jcBOX]);
     return D_O_K;
 }
 
@@ -1922,7 +1934,7 @@ int readzdoorsets(PACKFILE *f, int first, int count, int deststart)
 	
 	else if ( ( section_version > V_DOORS ) || ( section_version == V_DOORS && section_cversion > CV_DOORS ) )
 	{
-		al_trace("Cannot read .zdoors packfile made using V_DOORS (%d) subversion (%d)\n", section_version, section_cversion);
+		al_trace("Cannot read .zdoors packfile made using V_DOORS (%ld) subversion (%ld)\n", section_version, section_cversion);
 		return 0;
 		
 	}
@@ -2627,7 +2639,7 @@ int readonezdoorset(PACKFILE *f, int index)
 	
 	else if ( ( section_version > V_DOORS ) || ( section_version == V_DOORS && section_cversion > CV_DOORS ) )
 	{
-		al_trace("Cannot read .zdoors packfile made using V_DOORS (%d) subversion (%d)\n", section_version, section_cversion);
+		al_trace("Cannot read .zdoors packfile made using V_DOORS (%ld) subversion (%ld)\n", section_version, section_cversion);
 		return 0;
 		
 	}

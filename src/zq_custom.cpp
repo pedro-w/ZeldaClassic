@@ -404,7 +404,7 @@ static TABPANEL itemdata_tabs[] =
 static ListData item_class__list(item_class_list, &pfont);
 static ListData weapon_list(weaponlist, &pfont);
 
-static char counterlist_str_buf[12];
+static char counterlist_str_buf[24];
 
 const char *counterlist(int index, int *list_size)
 {
@@ -1690,8 +1690,8 @@ int readoneitem(PACKFILE *f, int index)
 	{
 		return 0;
 	}
-	al_trace("readoneitem section_version: %d\n", section_version);
-	al_trace("readoneitem section_cversion: %d\n", section_cversion);
+	al_trace("readoneitem section_version: %lu\n", section_version);
+	al_trace("readoneitem section_cversion: %lu\n", section_cversion);
     
 	if ( zversion > ZELDA_VERSION )
 	{
@@ -1700,7 +1700,7 @@ int readoneitem(PACKFILE *f, int index)
 	}
 	else if ( ( section_version > V_ITEMS ) || ( section_version == V_ITEMS && section_cversion < CV_ITEMS ) )
 	{
-		al_trace("Cannot read .zitem packfile made using V_ITEMS (%d) subversion (%d)\n", section_version, section_cversion);
+		al_trace("Cannot read .zitem packfile made using V_ITEMS (%lu) subversion (%lu)\n", section_version, section_cversion);
 		return 0;
 		
 	}
@@ -2657,7 +2657,7 @@ const char *defenselist(int index, int *list_size)
 struct EnemyNameInfo
 {
     int family;
-    char *misc[10];
+    const char *misc[10];
     void* list[10];
 };
 
@@ -3352,7 +3352,7 @@ void setEnemyLabels(int family)
         {
             if(inf->misc[i]!=NULL)
             {
-                enedata_dlg[54+i].dp = inf->misc[i];
+	      enedata_dlg[54+i].dp = (void*) inf->misc[i];
                 //enedata_dlg[54+i].flags = enedata_dlg[64+i].flags = 0;
             }
             else
@@ -3818,8 +3818,8 @@ int readonenpc(PACKFILE *f, int index)
 	{
 		return 0;
 	}
-	al_trace("readonenpc section_version: %d\n", section_version);
-	al_trace("readonenpc section_cversion: %d\n", section_cversion);
+	al_trace("readonenpc section_version: %lu\n", section_version);
+	al_trace("readonenpc section_cversion: %lu\n", section_cversion);
     
 	if ( zversion > ZELDA_VERSION )
 	{
@@ -3828,7 +3828,7 @@ int readonenpc(PACKFILE *f, int index)
 	}
 	else if ( ( section_version > V_GUYS ) || ( section_version == V_GUYS && section_cversion < CV_GUYS ) )
 	{
-		al_trace("Cannot read .znpc packfile made using V_GUYS (%d) subversion (%d)\n", section_version, section_cversion);
+		al_trace("Cannot read .znpc packfile made using V_GUYS (%lu) subversion (%lu)\n", section_version, section_cversion);
 		return 0;
 		
 	}

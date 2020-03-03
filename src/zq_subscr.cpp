@@ -6326,10 +6326,10 @@ static int onToggleInvis()
 static int onEditGrid()
 {
     grid_dlg[0].dp2=lfont;
-    char xsize[4];
-    char ysize[4];
-    char xoffset[4];
-    char yoffset[4];
+    char xsize[12];
+    char ysize[12];
+    char xoffset[12];
+    char yoffset[12];
     sprintf(xsize, "%d", zc_max(zinit.ss_grid_x,1));
     sprintf(ysize, "%d", zc_max(zinit.ss_grid_y,1));
     sprintf(xoffset, "%d", zinit.ss_grid_xofs);
@@ -6628,7 +6628,7 @@ void edit_subscreen()
     }
     
     tempss.ss_type=css->ss_type;
-    sprintf(tempss.name, css->name);
+    strcpy(tempss.name, css->name);
     
     if(ss_objects(css)==0)
     {
@@ -6723,7 +6723,7 @@ void edit_subscreen()
         }
         
         css->ss_type=tempss.ss_type;
-        sprintf(css->name, tempss.name);
+        strcpy(css->name, tempss.name);
         reset_subscreen(&tempss);
     }
     
@@ -7053,14 +7053,14 @@ int onEditSubscreens()
                         if(sstemplatelist_dlg[4].d1==0)
                         {
                             css->ss_type=sstACTIVE;
-                            sprintf(css->name, activesubscrtype_str[sstemplatelist_dlg[5].d1]);
+                            strcpy(css->name, activesubscrtype_str[sstemplatelist_dlg[5].d1]);
                             subscreen_dlg[3].h=172*(1+is_large);
                             subscreen_dlg[4].h=subscreen_dlg[3].h-4;
                         }
                         else
                         {
                             css->ss_type=sstPASSIVE;
-                            sprintf(css->name, passivesubscrtype_str[sstemplatelist_dlg[5].d1]);
+                            strcpy(css->name, passivesubscrtype_str[sstemplatelist_dlg[5].d1]);
                             subscreen_dlg[3].h=60*(1+is_large);
                             subscreen_dlg[4].h=subscreen_dlg[3].h-4;
                         }
@@ -7105,7 +7105,7 @@ int onEditSubscreens()
                         if(sstemplatelist_dlg[4].d1==0)
                         {
                             css->ss_type=sstACTIVE;
-                            sprintf(css->name, activesubscrtype_str[sstemplatelist_dlg[5].d1]);
+                            strcpy(css->name, activesubscrtype_str[sstemplatelist_dlg[5].d1]);
                             subscreen_dlg[3].h=172*(1+is_large);
                             subscreen_dlg[4].h=subscreen_dlg[3].h-4;
                             
@@ -7113,7 +7113,7 @@ int onEditSubscreens()
                         else
                         {
                             css->ss_type=sstPASSIVE;
-                            sprintf(css->name, passivesubscrtype_str[sstemplatelist_dlg[5].d1]);
+                            strcpy(css->name, passivesubscrtype_str[sstemplatelist_dlg[5].d1]);
                             subscreen_dlg[3].h=60*(1+is_large);
                             subscreen_dlg[4].h=subscreen_dlg[3].h-4;
                         }

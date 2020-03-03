@@ -8390,8 +8390,8 @@ int readtilefile(PACKFILE *f)
 	{
 		return 0;
 	}
-	al_trace("readoneweapon section_version: %d\n", section_version);
-	al_trace("readoneweapon section_cversion: %d\n", section_cversion);
+	al_trace("readoneweapon section_version: %lu\n", section_version);
+	al_trace("readoneweapon section_cversion: %lu\n", section_cversion);
 
 	if ( zversion > ZELDA_VERSION )
 	{
@@ -8401,7 +8401,7 @@ int readtilefile(PACKFILE *f)
 	
 	else if ( ( section_version > V_TILES ) || ( section_version == V_TILES && section_cversion < CV_TILES ) )
 	{
-		al_trace("Cannot read .ztile packfile made using V_TILES (%d) subversion (%d)\n", section_version, section_cversion);
+		al_trace("Cannot read .ztile packfile made using V_TILES (%lu) subversion (%lu)\n", section_version, section_cversion);
 		return 0;
 		
 	}
@@ -8486,8 +8486,8 @@ int readtilefile_to_location(PACKFILE *f, int start, int skip)
 	{
 		return 0;
 	}
-	al_trace("readoneweapon section_version: %d\n", section_version);
-	al_trace("readoneweapon section_cversion: %d\n", section_cversion);
+	al_trace("readoneweapon section_version: %lu\n", section_version);
+	al_trace("readoneweapon section_cversion: %lu\n", section_cversion);
 
 	if ( zversion > ZELDA_VERSION )
 	{
@@ -8497,7 +8497,7 @@ int readtilefile_to_location(PACKFILE *f, int start, int skip)
 	
 	else if ( ( section_version > V_TILES ) || ( section_version == V_TILES && section_cversion < CV_TILES ) )
 	{
-		al_trace("Cannot read .ztile packfile made using V_TILES (%d) subversion (%d)\n", section_version, section_cversion);
+		al_trace("Cannot read .ztile packfile made using V_TILES (%lu) subversion (%lu)\n", section_version, section_cversion);
 		return 0;
 		
 	}
@@ -8595,8 +8595,8 @@ int readtilefile_to_location(PACKFILE *f, int start)
 	{
 		return 0;
 	}
-	al_trace("readoneweapon section_version: %d\n", section_version);
-	al_trace("readoneweapon section_cversion: %d\n", section_cversion);
+	al_trace("readoneweapon section_version: %lu\n", section_version);
+	al_trace("readoneweapon section_cversion: %lu\n", section_cversion);
 
 	if ( zversion > ZELDA_VERSION )
 	{
@@ -8606,7 +8606,7 @@ int readtilefile_to_location(PACKFILE *f, int start)
 	
 	else if ( ( section_version > V_TILES ) || ( section_version == V_TILES && section_cversion < CV_TILES ) )
 	{
-		al_trace("Cannot read .ztile packfile made using V_TILES (%d) subversion (%d)\n", section_version, section_cversion);
+		al_trace("Cannot read .ztile packfile made using V_TILES (%lu) subversion (%lu)\n", section_version, section_cversion);
 		return 0;
 		
 	}
@@ -12717,8 +12717,8 @@ int readcombofile(PACKFILE *f, int skip, byte nooverwrite)
 	{
 		return 0;
 	}
-	al_trace("readoneweapon section_version: %d\n", section_version);
-	al_trace("readoneweapon section_cversion: %d\n", section_cversion);
+	al_trace("readoneweapon section_version: %lu\n", section_version);
+	al_trace("readoneweapon section_cversion: %lu\n", section_cversion);
 
 	if ( zversion > ZELDA_VERSION )
 	{
@@ -12728,7 +12728,7 @@ int readcombofile(PACKFILE *f, int skip, byte nooverwrite)
 	
 	else if ( ( section_version > V_COMBOS ) || ( section_version == V_COMBOS && section_cversion > CV_COMBOS ) )
 	{
-		al_trace("Cannot read .zcombo packfile made using V_COMBOS (%d) subversion (%d)\n", section_version, section_cversion);
+		al_trace("Cannot read .zcombo packfile made using V_COMBOS (%lu) subversion (%lu)\n", section_version, section_cversion);
 		return 0;
 		
 	}
@@ -12909,8 +12909,8 @@ int readcombofile_to_location(PACKFILE *f, int start, byte nooverwrite, int skip
 	{
 		return 0;
 	}
-	al_trace("readcombofile_to_location section_version: %d\n", section_version);
-	al_trace("readcombofile_to_location section_cversion: %d\n", section_cversion);
+	al_trace("readcombofile_to_location section_version: %lu\n", section_version);
+	al_trace("readcombofile_to_location section_cversion: %lu\n", section_cversion);
 
 	if ( zversion > ZELDA_VERSION )
 	{
@@ -12920,7 +12920,7 @@ int readcombofile_to_location(PACKFILE *f, int start, byte nooverwrite, int skip
 	
 	else if ( ( section_version > V_COMBOS ) || ( section_version == V_COMBOS && section_cversion > CV_COMBOS ) )
 	{
-		al_trace("Cannot read .zcombo packfile made using V_COMBOS (%d) subversion (%d)\n", section_version, section_cversion);
+		al_trace("Cannot read .zcombo packfile made using V_COMBOS (%lu) subversion (%lu)\n", section_version, section_cversion);
 		return 0;
 		
 	}
@@ -13228,8 +13228,8 @@ int readcomboaliasfile(PACKFILE *f)
 	{
 		return 0;
 	}
-	al_trace("readoneweapon section_version: %d\n", section_version);
-	al_trace("readoneweapon section_cversion: %d\n", section_cversion);
+	al_trace("readoneweapon section_version: %lu\n", section_version);
+	al_trace("readoneweapon section_cversion: %lu\n", section_cversion);
 
 	if ( zversion > ZELDA_VERSION )
 	{
@@ -13239,7 +13239,7 @@ int readcomboaliasfile(PACKFILE *f)
 	
 	else if ( ( section_version > V_COMBOALIASES ) || ( section_version == V_COMBOALIASES && section_cversion > CV_COMBOALIASES ) )
 	{
-		al_trace("Cannot read .zalias packfile made using V_COMBOALIASES (%d) subversion (%d)\n", section_version, section_cversion);
+		al_trace("Cannot read .zalias packfile made using V_COMBOALIASES (%lu) subversion (%lu)\n", section_version, section_cversion);
 		return 0;
 		
 	}
@@ -13379,8 +13379,8 @@ int readcomboaliasfile_to_location(PACKFILE *f, int start)
 	{
 		return 0;
 	}
-	al_trace("readcomboaliasfile_to_location section_version: %d\n", section_version);
-	al_trace("readcomboaliasfile_to_location section_cversion: %d\n", section_cversion);
+	al_trace("readcomboaliasfile_to_location section_version: %lu\n", section_version);
+	al_trace("readcomboaliasfile_to_location section_cversion: %lu\n", section_cversion);
 
 	if ( zversion > ZELDA_VERSION )
 	{
@@ -13390,7 +13390,7 @@ int readcomboaliasfile_to_location(PACKFILE *f, int start)
 	
 	else if ( ( section_version > V_COMBOALIASES ) || ( section_version == V_COMBOALIASES && section_cversion > CV_COMBOALIASES ) )
 	{
-		al_trace("Cannot read .zalias packfile made using V_COMBOALIASES (%d) subversion (%d)\n", section_version, section_cversion);
+		al_trace("Cannot read .zalias packfile made using V_COMBOALIASES (%lu) subversion (%lu)\n", section_version, section_cversion);
 		return 0;
 		
 	}

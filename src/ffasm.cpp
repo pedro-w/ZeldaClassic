@@ -1293,13 +1293,9 @@ long ffparse(char *string)
     
     long ret=0;
     char *tempstring1;
-    tempstring1=(char *)zc_malloc(strlen(string)+5);
-    sprintf(tempstring1, string);
-    
-    for(int i=0; i<4; ++i)
-    {
-        tempstring1[strlen(string)+i]='0';
-    }
+    size_t len = strlen(string)+5;
+    tempstring1=(char *)zc_malloc(len);
+    strncpy(tempstring1, string, len);
     
     ptr=strchr(tempstring1, '.');
     *ptr=0;
@@ -1627,7 +1623,7 @@ int set_argument(char *argbuf, ffscript **script, int com, int argument)
     }
     
     int i=0;
-    char tempvar[20];
+    char tempvar[64];
     
     while(variable_list[i].id>-1)
     {

@@ -170,7 +170,7 @@ bool zmap::isDungeon(int scr)
 bool zmap::clearall(bool validate)
 {
     Color=0;
-    char tbuf[10];
+    char tbuf[12];
     
     if((header.templatepath[0]!=0)&&validate)
     {
@@ -11202,7 +11202,7 @@ int save_quest(const char *filename, bool timed_save)
     {
         char backupname[2048];
         char backupname2[2048];
-        char ext[5];
+        char ext[12];
         
         for(int i=retention-1; i>0; --i)
         {

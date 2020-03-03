@@ -384,10 +384,12 @@ void load_game_configs()
     
     if(strlen(qstdir)==0)
     {
-        getcwd(qstdir,2048);
+      if (getcwd(qstdir,2048))
+      {
         fix_filename_case(qstdir);
         fix_filename_slashes(qstdir);
         put_backslash(qstdir);
+      }
     }
     else
     {
@@ -4947,7 +4949,7 @@ int OnSaveZCConfig()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)	
 	{
 		save_game_configs();
@@ -6649,7 +6651,7 @@ int onSound()
     return D_O_K;
 }
 
-int queding(const char *s1,char *s2,char *s3)
+int queding(const char *s1,const char *s2,const char *s3)
 {
     return jwin_alert(ZC_str,s1,s2,s3,"&Yes","&No",'y','n',lfont);
 }
@@ -6768,7 +6770,7 @@ int onEpilepsy()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 	    if ( epilepsyFlashReduction ) epilepsyFlashReduction = 0;
@@ -7186,7 +7188,7 @@ int on192b163compatibility()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 	    if ( zc_192b163_compatibility ) zc_192b163_compatibility = 0;
@@ -7207,7 +7209,7 @@ int onLinearQuestLoad()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 	    if (linear_quest_loading ) linear_quest_loading = 0;
@@ -7232,7 +7234,7 @@ int onMIDIPatch()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 	    if (midi_patch_fix) midi_patch_fix = 0;
@@ -7257,7 +7259,7 @@ int buggy_next_combo_secrets_emulation()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 	    if (emulation_patches[emuBUGGYNEXTCOMBOS] ) emulation_patches[emuBUGGYNEXTCOMBOS] = 0;
@@ -7279,7 +7281,7 @@ int v250_dmap_intro_repeat()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 	    if (emulation_patches[emu250DMAPINTOREPEAT] ) emulation_patches[emu250DMAPINTOREPEAT] = 0;
@@ -7300,7 +7302,7 @@ int v210_segment_drops()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 	    if (emulation_patches[emuITEMPERSEG] ) emulation_patches[emuITEMPERSEG] = 0;
@@ -7328,7 +7330,7 @@ int v210_windrobes()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 	    if (emulation_patches[emu210WINDROBES] ) emulation_patches[emu210WINDROBES] = 0;
@@ -7349,7 +7351,7 @@ int v210_grid_collision()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 	    if (emulation_patches[emuGRIDCOLLISION] ) emulation_patches[emuGRIDCOLLISION] = 0;
@@ -7373,7 +7375,7 @@ int v192_tribbles()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 	    if (emulation_patches[emuOLDTRIBBLES] ) emulation_patches[emuOLDTRIBBLES] = 0;
@@ -7401,7 +7403,7 @@ int continuous_sword_triggers()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 	    if (emulation_patches[emuSWORDTRIGARECONTINUOUS] ) emulation_patches[emuSWORDTRIGARECONTINUOUS] = 0;
@@ -7424,7 +7426,7 @@ int eight_way_shot_sfx_fix()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 	    if (emulation_patches[emu8WAYSHOTSFX] ) emulation_patches[emu8WAYSHOTSFX] = 0;
@@ -7448,7 +7450,7 @@ int v210_bombchus()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 		
@@ -7485,7 +7487,7 @@ int v190_linksprites()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 	    if (emulation_patches[emu190LINKSPRITES] ) 
@@ -7521,7 +7523,7 @@ int v190_swimsprites()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 	
@@ -7554,7 +7556,7 @@ int v210_brang_firetrail()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 	{
 	    if (emulation_patches[emuNOFLIPFIRETRAIL] ) emulation_patches[emuNOFLIPFIRETRAIL] = 0;
@@ -7596,7 +7598,7 @@ int onDebugConsole()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 		{
 			DebugConsole::Open();
@@ -7625,15 +7627,15 @@ int onConsoleZScript()
 	if ( !zscript_debugger ) {
 		if(jwin_alert3(
 			"WARNING: ZScript Debugger", 
-			"ENabling this will open the ZScript Debugger Console", 
+			"Enabling this will open the ZScript Debugger Console", 
 			"Depending on the size of your scripts, this will cause ZC Player to run slowly.",
-			"Are you seure that you wish to open the ZScript Debugger?",
+			"Are you sure that you wish to open the ZScript Debugger?",
 		 "&Yes", 
 		"&No", 
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)
 		{
 			FFCore.ZScriptConsole(true);
@@ -8172,7 +8174,7 @@ void system_pal()
 	char themefile[2048] = {0};
 	strcpy(themefile,get_config_string("Theme","theme_filename",""));
 	
-	if ( themefile[0] == NULL )
+	if ( themefile[0] == '\0' )
 	{
 		pal[dvc(1)] = _RGB(get_config_int("Theme","dvc1_r",4),get_config_int("Theme","dvc1_g",38),get_config_int("Theme","dvc1_b",46)); //box fg is text
 		pal[dvc(2)] = _RGB(get_config_int("Theme","dvc2_r",(16*63/255)), get_config_int("Theme","dvc2_g",(10*63/255)), get_config_int("Theme","dvc2_b",0));

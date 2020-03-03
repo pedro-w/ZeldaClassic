@@ -1226,7 +1226,9 @@ int load_quest(gamedata *g, bool report)
 #ifdef _ALLEGRO_WINDOWS
 						_getcwd(cwdbuf, 260);
 #else
-                        getcwd(cwdbuf, 260);
+						if (!getcwd(cwdbuf, 260)) {
+						  cwdbuf[0] = '\0';
+						}
 #endif
 
 						std::string path = cwdbuf;
@@ -4307,7 +4309,7 @@ void __zc_always_assert(bool e, const char* expression, const char* file, int li
     {
         //for best results set a breakpoint in here.
         char buf[1024];
-        sprintf("ASSERTION FAILED! : %s, %s line %i\n", expression, file, line);
+        sprintf(buf, "ASSERTION FAILED! : %s, %s line %i\n", expression, file, line);
         
         al_trace("%s", buf);
         set_gfx_mode(GFX_TEXT, 0, 0, 0, 0);

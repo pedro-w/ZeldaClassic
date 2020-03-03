@@ -1275,7 +1275,7 @@ int onSaveZQuestSettings()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)	
 	{
 		save_config_file();
@@ -1299,7 +1299,7 @@ int onClearQuestFilepath()
 		NULL, 
 		'y', 
 		'n', 
-		NULL, 
+		0, 
 		lfont) == 1)	
 	{
 		ZQ_ClearQuestPath();

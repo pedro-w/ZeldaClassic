@@ -135,7 +135,7 @@ void delete_combo_aliases()
 
 char *VerStr(int version)
 {
-    static char ver_str[12];
+    static char ver_str[16];
     sprintf(ver_str,"v%d.%02X",version>>8,version&0xFF);
     return ver_str;
 }
@@ -825,7 +825,7 @@ PACKFILE *open_quest_template(zquestheader *Header, char *deletefilename, bool v
     
     if(!f)
     {
-        return false;
+        return NULL;
     }
     
     if(validate)
@@ -841,7 +841,7 @@ PACKFILE *open_quest_template(zquestheader *Header, char *deletefilename, bool v
                 delete_file(deletefilename);
             }
             
-            return false;
+            return NULL;
         }
     }
     

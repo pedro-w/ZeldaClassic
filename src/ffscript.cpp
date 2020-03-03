@@ -2800,23 +2800,23 @@ void print_disassembly(const word scommand)
         al_trace("%14s: ", s_c.name);
         
         if(s_c.arg1_type == 0)
-            al_trace("%10s (val = %9d), ", varToString(sarg1), get_register(sarg1));
+            al_trace("%10s (val = %9ld), ", varToString(sarg1), get_register(sarg1));
         else
-            al_trace("%10s (val = %9d), ", "immediate", sarg1);
+            al_trace("%10s (val = %9ld), ", "immediate", sarg1);
             
         if(s_c.arg2_type == 0)
-            al_trace("%10s (val = %9d)\n", varToString(sarg2), get_register(sarg2));
+            al_trace("%10s (val = %9ld)\n", varToString(sarg2), get_register(sarg2));
         else
-            al_trace("%10s (val = %9d)\n", "immediate", sarg2);
+            al_trace("%10s (val = %9ld)\n", "immediate", sarg2);
     }
     else if(s_c.args == 1)
     {
         al_trace("%14s: ", s_c.name);
         
         if(s_c.arg1_type == 0)
-            al_trace("%10s (val = %9d)\n", varToString(sarg1), get_register(sarg1));
+            al_trace("%10s (val = %9ld)\n", varToString(sarg1), get_register(sarg1));
         else
-            al_trace("%10s (val = %9d)\n", "immediate", sarg1);
+            al_trace("%10s (val = %9ld)\n", "immediate", sarg1);
     }
     else
         al_trace("%14s\n", s_c.name);

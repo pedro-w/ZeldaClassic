@@ -455,7 +455,7 @@ int onStrings()
     
     strlist_dlg[0].dp2=lfont;
     int index=0;
-    char msgmore_xstring[5], msgmore_ystring[5], msgspeed_string[3], template_string[6];
+    char msgmore_xstring[5], msgmore_ystring[5], msgspeed_string[5], template_string[6];
     int morex=zinit.msg_more_x;
     int morey=zinit.msg_more_y;
     int msgspeed = zinit.msg_speed;
@@ -815,12 +815,12 @@ void editmsg(int index, int addAfter)
     editmsg_dlg[9].flags = MsgStrings[index].trans ? D_SELECTED : 0;
     editmsg_dlg[12].d1 = MsgStrings[index].tile;
     editmsg_dlg[12].fg = MsgStrings[index].cset;
-    char msg_ybuf[5];
-    char msg_xbuf[5];
-    char msg_wbuf[5];
-    char msg_hbuf[5];
-    char msg_hsbuf[5];
-    char msg_vsbuf[5];
+    char msg_ybuf[8];
+    char msg_xbuf[8];
+    char msg_wbuf[8];
+    char msg_hbuf[8];
+    char msg_hsbuf[8];
+    char msg_vsbuf[8];
     sprintf(msg_ybuf,"%d",MsgStrings[index].y);
     sprintf(msg_xbuf,"%d",MsgStrings[index].x);
     sprintf(msg_wbuf,"%d",MsgStrings[index].w);
@@ -833,7 +833,7 @@ void editmsg(int index, int addAfter)
     editmsg_dlg[21].dp = msg_hbuf;
     editmsg_dlg[23].dp = msg_hsbuf;
     editmsg_dlg[25].dp = msg_vsbuf;
-    char msg_sfxbuf[5];
+    char msg_sfxbuf[8];
     sprintf(msg_sfxbuf,"%d",MsgStrings[index].sfx);
     editmsg_dlg[13].dp = msg_sfxbuf;
     editmsg_dlg[27].flags=(MsgStrings[index].stringflags&STRINGFLAG_CONT)?D_SELECTED:0;
